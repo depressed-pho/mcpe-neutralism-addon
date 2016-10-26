@@ -1,5 +1,8 @@
 SUBDIRS = src
 
+EXTRA_DIST = \
+	README.md
+
 AUTOMAKE_OPTIONS = foreign
 
 .PHONY: fixme
