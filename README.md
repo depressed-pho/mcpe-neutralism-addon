@@ -1,8 +1,10 @@
 # Neutralism
-An MCPE addon which makes hostile mobs always spawn in neutral.
+An MCPE behavior pack which makes hostile mobs always spawn in neutral.
 
 * Creepers don't explode unless you aggravate them.
 
+## Tested on
+* MCPE v0.16.0
 
 ## Author
 
