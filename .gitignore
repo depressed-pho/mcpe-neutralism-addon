@@ -1,0 +1,12 @@
+# Autotools
+Makefile.in
+aclocal.m4
+autom4te.cache
+autoscan.log
+configure
+configure.scan
+install-sh
+missing
+
+# autobuild
+_build

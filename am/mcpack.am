@@ -1,0 +1,31 @@
+pack_base  = $(PACKAGE_TARNAME)-$(PACKAGE_VERSION)
+pack_name  = $(pack_base).mcpack
+pack_files = $(MCPACK_FILES:%.yaml=%.json)
+
+noinst_DATA += $(pack_name)
+CLEANFILES  += $(pack_name)
+
+$(pack_name): $(pack_files)
+	$(AM_V_GEN)
+	$(AM_V_at)rm -rf $(pack_base)
+	$(AM_V_at)$(MKDIR_P) $(pack_base)
+# This is the hardest part... Here we build a staging directory but
+# the problem is that $(pack_files) can either be relative to
+# $(srcdir) or $(builddir).
+	$(AM_V_at)for f in $^; do \
+			case "$$f" in \
+				$(srcdir)/*) \
+					echo "-C $(srcdir)"; \
+					echo "$$f" | sed 's|^$(srcdir)/||';; \
+				*) \
+					echo "-C $(builddir)"; \
+					echo "$$f";; \
+			esac; \
+		done | \
+		tar -cf - -T - | tar -xf - -C $(pack_base)
+	@if $(AM_V_P); then \
+		$(ZIP) -rv $@ $(pack_base); \
+	else \
+		$(ZIP) -rq $@ $(pack_base); \
+	fi
+	$(AM_V_at)rm -rf $(pack_base)

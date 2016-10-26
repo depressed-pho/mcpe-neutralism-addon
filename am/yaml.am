@@ -1,0 +1,12 @@
+noinst_DATA += $(YAML_FILES:%.yaml=%.json)
+CLEANFILES  += $(YAML_FILES:%.yaml=%.json)
+EXTRA_DIST  += $(YAML_FILES)
+
+%.json: %.yaml
+	$(AM_V_GEN)
+	$(AM_V_at)$(MKDIR_P) $(dir $@)
+	$(AM_V_at)if $(YAML2JSON) --pretty $< > $@.tmp; then \
+		mv -f $@.tmp $@; \
+	else \
+		exit 1; \
+	fi
