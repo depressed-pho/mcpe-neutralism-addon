@@ -1,9 +1,10 @@
+---
 header:
   pack_id: 6fdc3cfc-9b56-11e6-83c3-080027543012
   name: Neutralism
   packs_version: '@PACKAGE_VERSION@'
   modules:
-    - description: 'Hostile mobs always spawn in neutral'
+    - description: Hostile mobs always spawn in neutral
       version: '@PACKAGE_VERSION@'
       uuid: 60cb3024-9b56-11e6-bf18-080027543012
       type: data

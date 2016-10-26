@@ -4,6 +4,7 @@ pack_files = $(MCPACK_FILES:%.yaml=%.json)
 
 noinst_DATA += $(pack_name)
 CLEANFILES  += $(pack_name)
+EXTRA_DIST  += $(filter-out pack_manifest.yaml,$(MCPACK_FILES))
 
 $(pack_name): $(pack_files)
 	$(AM_V_GEN)

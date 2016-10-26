@@ -1,6 +1,5 @@
 noinst_DATA += $(YAML_FILES:%.yaml=%.json)
 CLEANFILES  += $(YAML_FILES:%.yaml=%.json)
-EXTRA_DIST  += $(YAML_FILES)
 
 %.json: %.yaml
 	$(AM_V_GEN)

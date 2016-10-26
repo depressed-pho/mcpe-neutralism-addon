@@ -1,4 +1,5 @@
 YAML_FILES = \
+	entities/creeper.yaml
 	pack_manifest.yaml
 
 MCPACK_FILES = \
