@@ -24,6 +24,7 @@ $(pack_name): $(pack_files)
 			esac; \
 		done | \
 		tar -cf - -T - | tar -xf - -C $(pack_base)
+# FIXME: Do we really need the root directory for .mcpack?
 	@if $(AM_V_P); then \
 		$(ZIP) -rv $@ $(pack_base); \
 	else \

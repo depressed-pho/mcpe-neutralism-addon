@@ -2,6 +2,7 @@ YAML_FILES = \
 	entities/blaze.yaml \
 	entities/cavespider.yaml \
 	entities/creeper.yaml \
+	entities/cow.yaml \
 	entities/spider.yaml \
 	pack_manifest.yaml
 
