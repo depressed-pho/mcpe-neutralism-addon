@@ -1,0 +1,120 @@
+---
+minecraft:entity:
+  format_version: 0.1
+
+  component_groups:
+    minecraft:blaze_calm:
+      minecraft:on_target_acquired:
+        event: minecraft:become_angry
+        target: self
+
+    minecraft:blaze_angry:
+      minecraft:angry:
+        duration: 25
+        broadcastAnger: true
+        broadcastRange: 20
+        calm_event:
+          event: minecraft:on_calm
+          target: self
+
+      minecraft:behavior.nearest_attackable_target:
+        priority: 1
+        entity_types:
+        - filters:
+            other_with_families: player
+          max_dist: 48
+
+      minecraft:behavior.melee_attack:
+        priority: 2
+        max_dist: 3
+        speed_multiplier: 1
+        random_stop_interval: 2
+        track_target: true
+
+      minecraft:behavior.ranged_attack:
+        priority: 0
+        attack_interval_min: 3
+        attack_interval_max: 5
+        charge_charged_trigger: 0
+        charge_shoot_trigger: 5
+        attack_radius: 16
+        burst_shots: 3
+        burst_interval: 0.3
+
+  components:
+    minecraft:identifier:
+      id: minecraft:blaze
+
+    minecraft:loot:
+      table: loot_tables/entities/blaze.json
+
+    minecraft:collision_box:
+      width: 0.5
+      height: 1.8
+
+    minecraft:attack:
+      damage: 6
+
+    minecraft:fall_damage:
+      value: 0
+
+    minecraft:movement:
+      value: 0.23
+      max: 0.23
+
+    minecraft:health:
+      value: 20
+      max: 20
+
+    minecraft:follow_range:
+      value: 48
+      max: 48
+
+    minecraft:hurt_when_wet:
+      value: true
+
+    minecraft:fire_immune: true
+
+    minecraft:nameable: {}
+
+    minecraft:shooter:
+      type: smallfireball
+      def: minecraft:fireball.small
+
+    minecraft:behavior.hurt_by_target:
+      priority: 3
+
+    minecraft:behavior.random_stroll:
+      priority: 4
+      speed_multiplier: 1
+
+    minecraft:behavior.random_look_around:
+      priority: 5
+
+    minecraft:type_family:
+      family:
+      - blaze
+      - monster
+
+  events:
+    minecraft:entity_spawned:
+      remove: {}
+      add:
+        component_groups:
+          - minecraft:blaze_calm
+
+    minecraft:become_angry:
+      remove:
+        component_groups:
+          - minecraft:blaze_calm
+      add:
+        component_groups:
+          - minecraft:blaze_angry
+
+    minecraft:on_calm:
+      remove:
+        component_groups:
+          - minecraft:blaze_angry
+      add:
+        component_groups:
+          - minecraft:blaze_calm
