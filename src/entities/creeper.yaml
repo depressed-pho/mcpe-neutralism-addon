@@ -3,7 +3,7 @@ minecraft:entity:
   format_version: 0.1
 
   component_groups:
-    minecraft:creeper_calm:
+    minecraft:creeper_neutral:
       minecraft:on_target_acquired:
         event: minecraft:become_angry
         target: self
@@ -150,12 +150,12 @@ minecraft:entity:
       remove: {}
       add:
         component_groups:
-          - minecraft:creeper_calm
+          - minecraft:creeper_neutral
 
     minecraft:become_angry:
       remove:
         component_groups:
-          - minecraft:creeper_calm
+          - minecraft:creeper_neutral
       add:
         component_groups:
           - minecraft:creeper_angry
@@ -166,7 +166,7 @@ minecraft:entity:
           - minecraft:creeper_angry
       add:
         component_groups:
-          - minecraft:creeper_calm
+          - minecraft:creeper_neutral
 
     minecraft:start_exploding:
       sequence:

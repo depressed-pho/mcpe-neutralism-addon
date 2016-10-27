@@ -4,9 +4,9 @@
 AC_PREREQ([2.69])
 AC_INIT([MCPE Neutralism Addon],
         [0.1],
-        [BUG-REPORT-ADDRESS (FIXME)],
+        [https://github.com/depressed-pho/mcpe-neutralism-addon/issues],
         [],
-        [PACKAGE-URI (FIXME)])
+        [https://github.com/depressed-pho/mcpe-neutralism-addon])
 AM_INIT_AUTOMAKE([1.9])
 AC_CONFIG_SRCDIR([src/pack_manifest.yaml.in])
 

@@ -1,6 +1,8 @@
 YAML_FILES = \
 	entities/blaze.yaml \
+	entities/cavespider.yaml \
 	entities/creeper.yaml \
+	entities/spider.yaml \
 	pack_manifest.yaml
 
 MCPACK_FILES = \
