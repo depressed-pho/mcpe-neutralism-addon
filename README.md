@@ -1,8 +1,8 @@
 # Neutralism
 An MCPE behavior pack which makes hostile mobs always spawn in neutral.
-
-* Creepers don't explode unless you aggravate them.
-
+Unless you aggravate them:
+* Creepers don't explode.
+* Blazes don't shoot fireballs at you.
 
 ## Tested on
 
