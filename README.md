@@ -1,9 +1,12 @@
 # Neutralism
 An MCPE behavior pack which makes hostile mobs always spawn in neutral.
-Unless you aggravate them:
+Unless you aggravate them,
 * Blazes don't shoot fireballs at you.
 * Creepers don't explode.
 * Spiders or Cave Spiders don't attack you regardless of the light level.
+
+In addition to that,
+* Adult cows become hostile once you attack them. You can't leash angry cows of course.
 
 ## Tested on
 * MCPE v0.16.0
