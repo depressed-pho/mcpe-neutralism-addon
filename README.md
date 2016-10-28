@@ -9,8 +9,13 @@ In addition to that,
 * Adult cows become hostile once you attack them. You can't leash angry cows of course.
 * The same goes for donkeys. Also you can't tame them when they're angered.
 
+
 ## Tested on
 * MCPE v0.16.0
+
+
+## Known problems
+* Guardians cannot be made neutral. They act strangely when `minecraft:behavior.hurt_by_target` is applied.
 
 
 ## How to build
