@@ -4,6 +4,7 @@ YAML_FILES = \
 	entities/creeper.yaml \
 	entities/cow.yaml \
 	entities/donkey.yaml \
+	entities/horse.yaml \
 	entities/spider.yaml \
 	pack_manifest.yaml
 
