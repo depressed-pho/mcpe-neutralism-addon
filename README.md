@@ -14,7 +14,7 @@ In addition to that,
 * MCPE v0.16.0
 
 
-## Known problems
+## Known issues
 * Guardians cannot be made neutral. They act strangely when `minecraft:behavior.hurt_by_target` is applied.
 
 
