@@ -34,6 +34,11 @@ minecraft:entity:
       minecraft:on_target_acquired:
         event: minecraft:become_angry
 
+      minecraft:behavior.look_at_player:
+        priority: 4
+        target_distance: 6
+        probability: 0.02
+
     minecraft:cow_angry:
       minecraft:angry:
         duration: 25
@@ -79,7 +84,7 @@ minecraft:entity:
             event: minecraft:entity_born
             target: baby
 
-    # Angry cows aren't leashable!
+    # Angry cows cannot be leashed!
     minecraft:cow_leashable:
       minecraft:leashable:
         soft_distance: 4
