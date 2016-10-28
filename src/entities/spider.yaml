@@ -124,13 +124,11 @@ minecraft:entity:
             with_environment_any:
               - night
               - underground
-          remove: {}
           add:
             component_groups:
               - minecraft:spider_jockey
               - minecraft:spider_neutral
         - weight: 99
-          remove: {}
           add:
             component_groups:
               - minecraft:spider_neutral

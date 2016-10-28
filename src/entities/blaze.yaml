@@ -98,7 +98,6 @@ minecraft:entity:
 
   events:
     minecraft:entity_spawned:
-      remove: {}
       add:
         component_groups:
           - minecraft:blaze_neutral

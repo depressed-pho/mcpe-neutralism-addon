@@ -7,6 +7,13 @@ YAML_FILES = \
 	entities/spider.yaml \
 	pack_manifest.yaml
 
+# THINKME: For some reason guardians start to act strangely when
+# "minecraft:behavior.hurt_by_target" is applied. They start to charge
+# the laser but never fire it. They also loses their ability to
+# "minecraft:behavior.avoid_mob_type".
+#
+#YAML_FILES += entities/guardian.yaml
+
 MCPACK_FILES = \
 	$(YAML_FILES) \
 	pack_icon.png
