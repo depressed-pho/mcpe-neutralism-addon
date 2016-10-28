@@ -22,6 +22,12 @@ minecraft:entity:
           event: minecraft:on_calm
           target: self
 
+      # Angry guardians always look at you!
+      minecraft:behavior.look_at_player:
+        priority: 8
+        look_distance: 12
+
+    minecraft:guardian_aggressive:
       minecraft:target_nearby_sensor:
         inside_range: 3
         outside_range: 4
@@ -42,11 +48,6 @@ minecraft:entity:
 
       minecraft:behavior.guardian_attack:
         priority: 4
-
-      # Angry guardians always look at you!
-      minecraft:behavior.look_at_player:
-        priority: 8
-        look_distance: 12
 
     minecraft:guardian_passive:
       minecraft:timer:
@@ -116,7 +117,6 @@ minecraft:entity:
 
     minecraft:behavior.random_look_around:
       priority: 9
-
     minecraft:type_family:
       family:
       - guardian
@@ -135,17 +135,22 @@ minecraft:entity:
       add:
         component_groups:
           - minecraft:guardian_angry
+          - minecraft:guardian_aggressive
 
     minecraft:on_calm:
       remove:
         component_groups:
           - minecraft:guardian_angry
+          - minecraft:guardian_aggressive
           - minecraft:guardian_passive
       add:
         component_groups:
           - minecraft:guardian_neutral
 
     minecraft:target_too_close:
+      remove:
+        component_groups:
+          - minecraft:guardian_aggressive
       add:
         component_groups:
           - minecraft:guardian_passive
@@ -154,3 +159,6 @@ minecraft:entity:
       remove:
         component_groups:
         - minecraft:guardian_passive
+      add:
+        component_groups:
+        - minecraft:guardian_aggressive

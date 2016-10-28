@@ -13,6 +13,7 @@ YAML_FILES = \
 # "minecraft:behavior.avoid_mob_type".
 #
 #YAML_FILES += entities/guardian.yaml
+#YAML_FILES += entities/guardian_elder.yaml
 
 MCPACK_FILES = \
 	$(YAML_FILES) \
