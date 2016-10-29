@@ -3,7 +3,7 @@ minecraft:entity:
   format_version: 0.1
 
   component_groups:
-    minecraft:donkey_baby:
+    minecraft:mule_baby:
       minecraft:is_baby: {}
 
       minecraft:scale_by_age:
@@ -31,7 +31,7 @@ minecraft:entity:
           event: minecraft:ageable_grow_up
           target: self
 
-      # Only babies panic. Adult donkeys don't!
+      # Only babies panic. Adult mules don't!
       minecraft:behavior.panic:
         priority: 2
         speed_multiplier: 1.2
@@ -45,8 +45,8 @@ minecraft:entity:
         target_distance: 6
         probability: 0.02
 
-    # Angry donkeys cannot be tamed!
-    minecraft:donkey_neutral:
+    # Angry mules cannot be tamed!
+    minecraft:mule_neutral:
       minecraft:on_target_acquired:
         event: minecraft:become_angry
 
@@ -59,7 +59,7 @@ minecraft:entity:
         seats:
           position:
             - 0
-            - 0.925
+            - 0.975
             - -0.2
 
       minecraft:tamemount:
@@ -101,7 +101,7 @@ minecraft:entity:
         target_distance: 6
         probability: 0.02
 
-    minecraft:donkey_angry:
+    minecraft:mule_angry:
       minecraft:angry:
         duration: 25
         broadcastAnger: true
@@ -123,33 +123,30 @@ minecraft:entity:
         speed_multiplier: 1.25
         track_target: false
 
-      # Angry donkeys always look at you!
+      # Angry mules always look at you!
       minecraft:behavior.look_at_player:
         priority: 4
         look_distance: 8
 
-    minecraft:donkey_adult:
+    minecraft:mule_adult:
       minecraft:loot:
         table: loot_tables/entities/horse.json
-
-      minecraft:behavior.breed:
-        priority: 5
-        speed_multiplier: 1
 
       minecraft:behavior.run_around_like_crazy:
         priority: 6
         speed_multiplier: 1.2
 
-    minecraft:donkey_tamed:
+    minecraft:mule_tamed:
       minecraft:rideable:
+        priority: 0
         seat_count: 1
         crouching_skip_interact: true
         interact_text: action.interact.ride.horse
         seats:
           position:
-            - 0
-            - 0.925
-            - -0.2
+          - 0
+          - 0.975
+          - -0.2
 
       minecraft:behavior.player_ride_tamed: {}
 
@@ -157,26 +154,7 @@ minecraft:entity:
         inventory_size: 17
         container_type: horse
 
-      minecraft:breedable:
-        requireTame: true
-        inheritTamed: false
-        breedsWith:
-        - mateType: minecraft:donkey
-          babyType: minecraft:donkey
-          breed_event:
-            event: minecraft:entity_born
-            target: baby
-        - mateType: minecraft:horse
-          babyType: minecraft:mule
-          breed_event:
-            event: minecraft:entity_born
-            target: baby
-        breedItems:
-        - golden_carrot
-        - golden_apple
-        - appleEnchanted
-
-    minecraft:donkey_unchested:
+    minecraft:mule_unchested:
       minecraft:interact:
       - on_interact:
           filters:
@@ -184,14 +162,14 @@ minecraft:entity:
             other_with_families: player
           event: minecraft:on_chest
           target: self
-        use_item: true
+        use_item: 'true'
         interact_text: action.interact.attachchest
 
-    minecraft:donkey_chested:
+    minecraft:mule_chested:
       minecraft:is_chested: {}
 
-    # Angry donkeys cannot be leashed!
-    minecraft:donkey_leashable:
+    # Angry mules cannot be leashed!
+    minecraft:mule_leashable:
       minecraft:leashable:
         soft_distance: 4
         hard_distance: 6
@@ -203,18 +181,18 @@ minecraft:entity:
           event: minecraft:on_unleash
           target: self
 
-    minecraft:donkey_leashed:
+    minecraft:mule_leashed:
       minecraft:behavior.move_towards_restriction:
         priority: 7
         speed_multiplier: 1
 
   components:
     minecraft:identifier:
-      id: minecraft:donkey
+      id: minecraft:mule
 
     minecraft:type_family:
       family:
-        - donkey
+        - mule
 
     minecraft:collision_box:
       width: 1.4
@@ -288,71 +266,71 @@ minecraft:entity:
       - weight: 80
         add:
           component_groups:
-            - minecraft:donkey_adult
-            - minecraft:donkey_neutral
-            - minecraft:donkey_leashable
+            - minecraft:mule_adult
+            - minecraft:mule_neutral
+            - minecraft:mule_leashable
       - weight: 20
         add:
           component_groups:
-            - minecraft:donkey_baby
-            - minecraft:donkey_leashable
+            - minecraft:mule_baby
+            - minecraft:mule_leashable
 
     minecraft:entity_born:
       add:
         component_groups:
-          - minecraft:donkey_baby
-          - minecraft:donkey_leashable
+          - minecraft:mule_baby
+          - minecraft:mule_leashable
 
     minecraft:on_tame:
       remove:
         component_groups:
-          - minecraft:donkey_neutral
+          - minecraft:mule_neutral
       add:
         component_groups:
-          - minecraft:donkey_tamed
-          - minecraft:donkey_unchested
+          - minecraft:mule_tamed
+          - minecraft:mule_unchested
 
     minecraft:ageable_grow_up:
       remove:
         component_groups:
-          - minecraft:donkey_baby
+          - minecraft:mule_baby
       add:
         component_groups:
-          - minecraft:donkey_adult
-          - minecraft:donkey_neutral
+          - minecraft:mule_adult
+          - minecraft:mule_neutral
 
     minecraft:on_leash:
       add:
         component_groups:
-          - minecraft:donkey_leashed
+          - minecraft:mule_leashed
 
     minecraft:on_unleash:
       remove:
         component_groups:
-          - minecraft:donkey_leashed
+          - minecraft:mule_leashed
 
     minecraft:on_chest:
       remove:
         component_groups:
-          - minecraft:donkey_unchested
+          - minecraft:mule_unchested
       add:
         component_groups:
-          - minecraft:donkey_chested
+          - minecraft:mule_chested
 
     minecraft:become_angry:
       remove:
         component_groups:
-          - minecraft:donkey_neutral
-          - minecraft:donkey_leashable
+          - minecraft:mule_neutral
+          - minecraft:mule_leashable
       add:
         component_groups:
-          - minecraft:donkey_angry
+          - minecraft:mule_angry
 
     minecraft:on_calm:
       remove:
         component_groups:
-          - minecraft:donkey_angry
+          - minecraft:mule_angry
       add:
         component_groups:
-          - minecraft:donkey_neutral
-          - minecraft:donkey_leashable
+          - minecraft:mule_neutral
+          - minecraft:mule_leashable
