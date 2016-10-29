@@ -7,7 +7,7 @@ Unless you aggravate them,
 
 In addition to that,
 * Adult cows become hostile once you attack them. You can't leash angry cows of course.
-* The same goes for donkeys and horses. Also you can't tame them when they're angered.
+* The same goes for untamed donkeys, horses, and mules. Also you can't tame them when they're angered.
 
 
 ## Tested on
