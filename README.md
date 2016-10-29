@@ -15,7 +15,7 @@ In addition to that,
 
 
 ## Known issues
-* Guardians and Elder Guardians cannot be made neutral. They act strangely when `minecraft:behavior.hurt_by_target` is applied.
+* Guardians or Elder Guardians cannot be made neutral. They act strangely when `minecraft:behavior.hurt_by_target` is applied.
 
 
 ## How to build
