@@ -1,0 +1,96 @@
+---
+minecraft:entity:
+  format_version: 0.1
+
+  component_groups:
+    minecraft:silverfish_neutral:
+      minecraft:on_target_acquired:
+        event: minecraft:become_angry
+        target: self
+
+    minecraft:silverfish_angry:
+      minecraft:angry:
+        duration: -1
+        broadcastAnger: true
+        broadcastRange: 20
+        calm_event:
+          event: minecraft:on_calm
+          target: self
+
+      minecraft:behavior.silverfish_wake_up_friends:
+        priority: 3
+
+      minecraft:behavior.nearest_attackable_target:
+        priority: 4
+        entity_types:
+          - filters:
+              other_with_families:
+                - player
+                - irongolem
+                - snowgolem
+            max_dist: 8
+            attack_interval: 10
+
+      minecraft:behavior.melee_attack:
+        priority: 5
+        speed_multiplier: 1
+        track_target: true
+
+  components:
+    minecraft:identifier:
+      id: minecraft:silverfish
+
+    minecraft:type_family:
+      family:
+      - silverfish
+
+    minecraft:nameable: {}
+
+    minecraft:loot:
+      table: loot_tables/entities/silverfish.json
+
+    minecraft:health:
+      value: 8
+      max: 8
+
+    minecraft:movement:
+      value: 0.25
+
+    minecraft:attack:
+      damage: 1
+
+    minecraft:collision_box:
+      width: 0.4
+      height: 0.3
+
+    minecraft:behavior.float:
+      priority: 1
+
+    minecraft:behavior.hurt_by_target:
+      priority: 2
+      alert_same_type: true
+
+    minecraft:behavior.silverfish_merge_with_stone:
+      priority: 6
+
+  events:
+    minecraft:entity_spawned:
+      add:
+        component_groups:
+          - minecraft:silverfish_neutral
+
+    minecraft:become_angry:
+      remove:
+        component_groups:
+          - minecraft:silverfish_neutral
+      add:
+        component_groups:
+        - minecraft:silverfish_angry
+
+    minecraft:on_calm:
+      remove:
+        component_groups:
+          - minecraft:silverfish_angry
+      add:
+        component_groups:
+          - minecraft:silverfish_neutral
