@@ -1,0 +1,326 @@
+---
+minecraft:entity:
+  format_version: 0.1
+
+  component_groups:
+    minecraft:rabbit_baby:
+      minecraft:is_baby: {}
+
+      minecraft:scale:
+        value: 0.4
+
+      minecraft:ageable:
+        duration: 1200
+        feedItems:
+          - golden_carrot
+          - carrot
+          - yellow_flower
+        grow_up:
+          event: minecraft:ageable_grow_up
+          target: self
+
+      # Only babies panic. Adult rabbits don't!
+      minecraft:behavior.panic:
+        priority: 2
+        speed_modifier: 2.2
+
+      minecraft:behavior.follow_parent:
+        priority: 3
+        speed_modifier: 1.1
+
+    minecraft:rabbit_neutral:
+      minecraft:on_target_acquired:
+        event: minecraft:become_angry
+
+    minecraft:rabbit_angry:
+      minecraft:angry:
+        duration: 25
+        broadcastAnger: true
+        broadcastRange: 20
+        calm_event:
+          event: minecraft:on_calm
+          target: self
+
+      minecraft:behavior.nearest_attackable_target:
+        priority: 2
+        entity_types:
+          - filters:
+              other_with_families: player
+            max_dist: 16
+          - filters:
+              other_with_families: wolf
+            max_dist: 8
+        must_see: true
+
+      minecraft:behavior.melee_attack:
+        priority: 3
+        speed_multiplier: 1.25
+        track_target: false
+
+    minecraft:rabbit_adult:
+      minecraft:loot:
+        table: loot_tables/entities/rabbit.json
+
+      minecraft:scale:
+        value: 0.6
+
+      minecraft:behavior.breed:
+        priority: 4
+        speed_modifier: 1
+
+      minecraft:breedable:
+        breedItems:
+        - golden_carrot
+        - carrot
+        - yellow_flower
+        breedsWith:
+          mateType: minecraft:rabbit
+          babyType: minecraft:rabbit
+        requireTame: false
+        mutation_factor:
+          variant: 0.2
+
+    # Angry rabbits cannot be leashed!
+    minecraft:rabbit_leashable:
+      minecraft:leashable:
+        soft_distance: 4
+        hard_distance: 6
+        max_distance: 10
+        on_leash:
+          event: minecraft:on_leash
+          target: self
+        on_unleash:
+          event: minecraft:on_unleash
+          target: self
+
+    minecraft:rabbit_leashed:
+      minecraft:behavior.move_towards_restriction:
+        priority: 2
+        speed_modifier: 1
+
+    minecraft:rabbit_coat_brown:
+      minecraft:variant:
+        value: 0
+
+    minecraft:rabbit_coat_white:
+      minecraft:variant:
+        value: 1
+
+    minecraft:rabbit_coat_black:
+      minecraft:variant:
+        value: 2
+
+    minecraft:rabbit_coat_splotched:
+      minecraft:variant:
+        value: 3
+
+    minecraft:rabbit_coat_desert:
+      minecraft:variant:
+        value: 4
+
+    minecraft:rabbit_coat_salt:
+      minecraft:variant:
+        value: 5
+
+  components:
+    minecraft:identifier:
+      id: minecraft:rabbit
+
+    minecraft:type_family:
+      family:
+        - rabbit
+
+    minecraft:collision_box:
+      width: 0.67
+      height: 0.67
+
+    minecraft:nameable: {}
+
+    minecraft:health:
+      value: 3
+      max: 3
+
+    # Weaker than zombies...
+    minecraft:attack:
+      damage: 2
+
+    minecraft:movement:
+      value: 0.3
+      max: 0.3
+
+    minecraft:behavior.float:
+      priority: 0
+
+    minecraft:behavior.hurt_by_target:
+      priority: 1
+
+    minecraft:behavior.breed:
+      priority: 5
+      speed_modifier: 0.8
+
+    minecraft:behavior.tempt:
+      priority: 6
+      speed_modifier: 1
+      items:
+        - golden_carrot
+        - carrot
+        - yellow_flower
+
+    minecraft:behavior.avoid_mob_type:
+      priority: 7
+      entity_types:
+        - filters:
+            other_with_families: player
+          max_dist: 8
+          walk_speed_multiplier: 2.2
+          sprint_speed_multiplier: 2.2
+
+        - filters:
+            other_with_families: wolf
+          max_dist: 4
+          walk_speed_multiplier: 2.2
+          sprint_speed_multiplier: 2.2
+
+        - filters:
+            other_with_families: monster
+          max_dist: 4
+          walk_speed_multiplier: 1.5
+          sprint_speed_multiplier: 1.5
+
+    minecraft:behavior.raid_garden:
+      priority: 8
+      blocks:
+        - minecraft:carrot
+      search_range: 16
+      goal_radius: 0.8
+
+    minecraft:behavior.random_stroll:
+      priority: 9
+      speed_modifier: 0.6
+      xz_dist: 2
+      y_dist: 1
+
+    minecraft:behavior.look_at_player:
+      priority: 10
+
+  events:
+    minecraft:entity_spawned:
+      sequence:
+        - randomize:
+          - weight: 3
+            add:
+              component_groups:
+                - minecraft:rabbit_adult
+                - minecraft:rabbit_neutral
+                - minecraft:rabbit_leashable
+          - weight: 1
+            add:
+              component_groups:
+                - minecraft:rabbit_baby
+                - minecraft:rabbit_leashable
+        - filters:
+            without_components: minecraft:variant
+          randomize:
+            - weight: 50
+              add:
+                component_groups:
+                  - minecraft:rabbit_coat_brown
+            - weight: 40
+              add:
+                component_groups:
+                  - minecraft:rabbit_coat_black
+            - weight: 10
+              add:
+                component_groups:
+                  - minecraft:rabbit_coat_salt
+        - filters:
+            with_environment_any: biome:desert
+          add:
+            component_groups:
+              - minecraft:rabbit_coat_desert
+        - filters:
+            with_environment_any: biome:snow_covered
+          randomize:
+          - weight: 80
+            add:
+              component_groups:
+                - minecraft:rabbit_coat_white
+          - weight: 20
+            add:
+              component_groups:
+                - minecraft:rabbit_coat_splotched
+
+    minecraft:entity_born:
+      sequence:
+        - add:
+            component_groups:
+              - minecraft:rabbit_baby
+              - minecraft:rabbit_leashable
+        - filters:
+            without_components: minecraft:variant
+          randomize:
+          - weight: 50
+            add:
+              component_groups:
+                - minecraft:rabbit_coat_brown
+          - weight: 40
+            add:
+              component_groups:
+                - minecraft:rabbit_coat_black
+          - weight: 10
+            add:
+              component_groups:
+                - minecraft:rabbit_coat_salt
+        - filters:
+            with_environment_any: biome:desert
+          add:
+            component_groups:
+              - minecraft:rabbit_coat_desert
+        - filters:
+            with_environment_any: biome:snow_covered
+          randomize:
+          - weight: 80
+            add:
+              component_groups:
+                - minecraft:rabbit_coat_white
+          - weight: 20
+            add:
+              component_groups:
+                - minecraft:rabbit_coat_splotched
+
+    minecraft:rabbit_grow_up:
+      remove:
+        component_groups:
+          - minecraft:rabbit_baby
+      add:
+        component_groups:
+          - minecraft:rabbit_adult
+          - minecraft:rabbit_neutral
+
+    minecraft:on_leash:
+      add:
+        component_groups:
+          - minecraft:rabbit_leashed
+
+    minecraft:on_unleash:
+      remove:
+        component_groups:
+          - minecraft:rabbit_leashed
+
+    minecraft:become_angry:
+      remove:
+        component_groups:
+          - minecraft:rabbit_neutral
+          - minecraft:rabbit_leashable
+      add:
+        component_groups:
+          - minecraft:rabbit_angry
+
+    minecraft:on_calm:
+      remove:
+        component_groups:
+          - minecraft:rabbit_angry
+      add:
+        component_groups:
+          - minecraft:rabbit_neutral
+          - minecraft:rabbit_leashable
