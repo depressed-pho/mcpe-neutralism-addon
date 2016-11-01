@@ -1,0 +1,136 @@
+---
+minecraft:entity:
+  format_version: 0.1
+
+  component_groups:
+    minecraft:revert_to_skeleton:
+      minecraft:transformation:
+        into: minecraft:skeleton
+        delay: 0.5
+
+    minecraft:stray_neutral:
+      minecraft:on_target_acquired:
+        event: minecraft:become_angry
+        target: self
+
+    minecraft:stray_angry:
+      minecraft:angry:
+        duration: 25
+        broadcastAnger: true
+        broadcastRange: 20
+        calm_event:
+          event: minecraft:on_calm
+          target: self
+
+      minecraft:behavior.nearest_attackable_target:
+        priority: 3
+        entity_types:
+          - filters:
+              other_with_families: player
+            max_dist: 16
+        must_see: true
+
+      minecraft:behavior.ranged_attack:
+        priority: 4
+        attack_interval_min: 1
+        attack_interval_max: 3
+        attack_radius: 15
+
+      minecraft:behavior.look_at_player:
+        priority: 5
+        look_distance: 8
+
+  components:
+    minecraft:identifier:
+      id: minecraft:skeleton.stray
+
+    minecraft:type_family:
+      family:
+      - stray
+      - monster
+
+    minecraft:collision_box:
+      width: 0.6
+      height: 1.95
+
+    minecraft:burns_in_daylight: {}
+
+    minecraft:nameable: {}
+
+    minecraft:health:
+      value: 20
+      max: 20
+
+    minecraft:loot:
+      table: loot_tables/entities/skeleton.json
+
+    minecraft:movement:
+      value: 0.25
+      max: 0.25
+
+    minecraft:shooter:
+      type: Arrow
+      def: minecraft:arrow.skeleton
+      auxVal: 19
+
+    minecraft:equipment:
+      table: loot_tables/entities/skeleton_gear.json
+
+    minecraft:behavior.float:
+      priority: 0
+
+    minecraft:behavior.restrict_sun:
+      priority: 1
+
+    minecraft:behavior.hurt_by_target:
+      priority: 2
+
+    minecraft:behavior.flee_sun:
+      priority: 6
+      speed_multiplier: 1
+
+    minecraft:behavior.random_stroll:
+      priority: 7
+      speed_multiplier: 1
+
+    minecraft:behavior.random_look_around:
+      priority: 8
+
+  events:
+    # THINKME: I don't think this is a valid event.
+    change_to_skeleton:
+      sequence:
+        - filters:
+            with_environment_any:
+              - underground
+          add:
+            component_groups:
+            - minecraft:revert_to_skeleton
+
+        - randomize:
+          - weight: 20
+            add:
+              component_groups:
+                - minecraft:revert_to_skeleton
+          - weight: 80
+
+    minecraft:entity_spawned:
+      add:
+        component_groups:
+          - minecraft:stray_neutral
+
+    minecraft:become_angry:
+      remove:
+        component_groups:
+          - minecraft:stray_neutral
+      add:
+        component_groups:
+          - minecraft:stray_angry
+
+    minecraft:on_calm:
+      remove:
+        component_groups:
+          - minecraft:stray_angry
+      add:
+        component_groups:
+          - minecraft:stray_neutral

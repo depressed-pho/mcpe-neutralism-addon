@@ -11,6 +11,7 @@ YAML_FILES = \
 	entities/silverfish.yaml \
 	entities/skeleton_horse.yaml \
 	entities/spider.yaml \
+	entities/stray.yaml \
 	pack_manifest.yaml
 
 # THINKME: For some reason guardians start to act strangely when

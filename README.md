@@ -20,6 +20,8 @@ In addition to that,
 
 
 ## Known issues
+* **Mobs spawned before applying the behavior pack do not behave
+  correctly,** which can not be fixed.
 * Guardians or Elder Guardians cannot be made neutral. They act
   strangely when `minecraft:behavior.hurt_by_target` is applied.
 * Angry pigs are still rideable. This is weird but there seems not to
