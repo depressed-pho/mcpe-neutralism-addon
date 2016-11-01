@@ -14,6 +14,7 @@ YAML_FILES = \
 	entities/stray.yaml \
 	entities/wither.yaml \
 	entities/wolf.yaml \
+	entities/zombie.yaml \
 	pack_manifest.yaml
 
 # THINKME: For some reason guardians start to act strangely when
