@@ -12,7 +12,7 @@ In addition to that,
   angry cows of course.
 * Adult pigs, rabbits, and skeleton horses become hostile too.
 * The same goes for untamed donkeys, horses, and mules. Also you can't
-  tame them when they're angered.
+  tame them when they are angered.
 
 
 ## Tested on
@@ -22,7 +22,7 @@ In addition to that,
 ## Known issues
 * Guardians or Elder Guardians cannot be made neutral. They act
   strangely when `minecraft:behavior.hurt_by_target` is applied.
-* Angry pigs are still mountable. This is weird but there seems not to
+* Angry pigs are still rideable. This is weird but there seems not to
   be a way around.
 
 
