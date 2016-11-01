@@ -9,6 +9,7 @@ YAML_FILES = \
 	entities/pig.yaml \
 	entities/rabbit.yaml \
 	entities/silverfish.yaml \
+	entities/skeleton_horse.yaml \
 	entities/spider.yaml \
 	pack_manifest.yaml
 
