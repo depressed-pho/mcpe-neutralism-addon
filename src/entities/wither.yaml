@@ -1,0 +1,108 @@
+---
+minecraft:entity:
+  format_version: 0.1
+
+  component_groups:
+    minecraft:wither_skeleton_neutral:
+      minecraft:on_target_acquired:
+        event: minecraft:become_angry
+        target: self
+
+    minecraft:wither_skeleton_angry:
+      minecraft:angry:
+        duration: 25
+        broadcastAnger: true
+        broadcastRange: 20
+        calm_event:
+          event: minecraft:on_calm
+          target: self
+
+      minecraft:behavior.nearest_attackable_target:
+        priority: 2
+        entity_types:
+          - filters:
+              other_with_families: player
+            max_dist: 16
+        must_see: true
+
+      minecraft:behavior.melee_attack:
+        priority: 3
+        target_dist: 1.2
+        speed_multiplier: 1.25
+        track_target: true
+
+      minecraft:behavior.look_at_player:
+        priority: 4
+        look_distance: 8
+
+  components:
+    minecraft:identifier:
+      id: minecraft:skeleton.wither
+
+    minecraft:type_family:
+      family:
+        - wither
+        - monster
+
+    minecraft:health:
+      value: 20
+      max: 20
+
+    minecraft:collision_box:
+      width: 0.72
+      height: 2
+
+    minecraft:attack:
+      damage: 4
+      effect_name: wither
+      effect_duration: 10
+
+    minecraft:loot:
+      table: loot_tables/entities/wither_skeleton.json
+
+    minecraft:equipment:
+      table: loot_tables/entities/wither_skeleton_gear.json
+
+    minecraft:movement:
+      value: 0.25
+      max: 0.25
+
+    minecraft:scale:
+      value: 1.2
+
+    minecraft:fire_immune: true
+
+    minecraft:behavior.float:
+      priority: 0
+
+    minecraft:behavior.hurt_by_target:
+      priority: 1
+
+    minecraft:behavior.random_stroll:
+      priority: 5
+      speed_multiplier: 1
+
+    minecraft:behavior.random_look_around:
+      priority: 6
+
+  events:
+    minecraft:entity_spawned:
+      add:
+        component_groups:
+          - minecraft:wither_skeleton_neutral
+
+    minecraft:become_angry:
+      remove:
+        component_groups:
+          - minecraft:wither_skeleton_neutral
+      add:
+        component_groups:
+          - minecraft:wither_skeleton_angry
+
+    minecraft:on_calm:
+      remove:
+        component_groups:
+          - minecraft:wither_skeleton_angry
+      add:
+        component_groups:
+          - minecraft:wither_skeleton_neutral
