@@ -9,6 +9,7 @@ YAML_FILES = \
 	entities/enderman.yaml \
 	entities/ghast.yaml \
 	entities/horse.yaml \
+	entities/magmacube.yaml \
 	entities/mule.yaml \
 	entities/pig.yaml \
 	entities/rabbit.yaml \
