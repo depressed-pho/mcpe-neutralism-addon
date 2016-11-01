@@ -70,6 +70,14 @@ minecraft:entity:
           event: minecraft:on_tame
           target: self
 
+      minecraft:on_target_acquired:
+        event: minecraft:become_angry
+        target: self
+
+      # Wild wolves pick up mutton and rabbit meat.
+      minecraft:inventory:
+        inventory_size: 8
+
       # Wild wolves still attack sheep and rabbits. They will starve
       # otherwise...
       minecraft:behavior.nearest_attackable_target:
@@ -83,9 +91,11 @@ minecraft:entity:
             max_dist: 16
         must_see: true
 
-      minecraft:on_target_acquired:
-        event: minecraft:become_angry
-        target: self
+      minecraft:behavior.pickup_items:
+        priority: 5
+        items:
+          - minecraft:muttonRaw
+          - minecraft:rabbit
 
       minecraft:rideable:
         seat_count: 1
