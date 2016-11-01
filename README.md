@@ -15,6 +15,9 @@ In addition to that,
 * The same goes for untamed donkeys, horses, and mules. Also you can't
   tame them when they are angered.
 
+There are a few exceptions:
+* Wolves still attack sheep and rabbits. They will starve otherwise...
+
 
 ## Tested on
 * MCPE v0.16.0

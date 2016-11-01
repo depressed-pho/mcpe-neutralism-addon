@@ -13,6 +13,7 @@ YAML_FILES = \
 	entities/spider.yaml \
 	entities/stray.yaml \
 	entities/wither.yaml \
+	entities/wolf.yaml \
 	pack_manifest.yaml
 
 # THINKME: For some reason guardians start to act strangely when
