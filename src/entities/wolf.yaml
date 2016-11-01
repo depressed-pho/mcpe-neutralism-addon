@@ -76,11 +76,11 @@ minecraft:entity:
         priority: 4
         attack_interval: 10
         entity_types:
-        - filters:
-            other_with_families:
-              - sheep
-              - rabbit
-          max_dist: 16
+          - filters:
+              other_with_families:
+                - sheep
+                - rabbit
+            max_dist: 16
         must_see: true
 
       minecraft:on_target_acquired:
@@ -242,11 +242,11 @@ minecraft:entity:
             component_groups:
               - minecraft:wolf_adult
               - minecraft:wolf_wild
-      - weight: 1
-        add:
-          component_groups:
-            - minecraft:wolf_baby
-            - minecraft:wolf_wild
+        - weight: 1
+          add:
+            component_groups:
+              - minecraft:wolf_baby
+              - minecraft:wolf_wild
 
     minecraft:entity_born:
       add:

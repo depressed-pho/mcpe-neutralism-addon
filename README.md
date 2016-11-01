@@ -3,7 +3,7 @@ An MCPE behavior pack which makes hostile mobs always spawn in
 neutral. Unless you aggravate them,
 * Blazes don't shoot fireballs at you.
 * Creepers don't explode.
-* Silver fish, Wither Skeletons, or Zombies don't attack you.
+* Silver fish, Wither Skeletons, Zombies, or Husks don't attack you.
 * Strays don't shoot arrows at you.
 * Spiders or Cave Spiders don't attack you regardless of the light
   level.
