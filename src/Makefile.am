@@ -11,6 +11,7 @@ YAML_FILES = \
 	entities/horse.yaml \
 	entities/magmacube.yaml \
 	entities/mule.yaml \
+	entities/mushroom_cow.yaml \
 	entities/pig.yaml \
 	entities/rabbit.yaml \
 	entities/silverfish.yaml \
@@ -25,8 +26,8 @@ YAML_FILES = \
 	pack_manifest.yaml
 
 # THINKME: For some reason guardians start to act strangely when
-# "minecraft:behavior.hurt_by_target" is applied. They start to charge
-# the laser but never fire it. They also loses their ability to
+# "minecraft:behavior.hurt_by_target" is applied. They charge the
+# laser but never fire it. They also loses their ability to
 # "minecraft:behavior.avoid_mob_type".
 #
 #YAML_FILES += entities/guardian.yaml

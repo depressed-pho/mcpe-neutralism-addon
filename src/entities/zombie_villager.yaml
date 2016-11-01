@@ -292,8 +292,12 @@ minecraft:entity:
         component_groups:
           - minecraft:zombie_villager_neutral
 
+    # From villager counterpart to zombie.
     minecraft:entity_transformed:
       sequence:
+        - add:
+            component_groups:
+              - minecraft:zombie_villager_neutral
         - filters:
             other_with_components: minecraft:is_baby
           add:

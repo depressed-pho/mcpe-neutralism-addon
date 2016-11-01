@@ -3,6 +3,10 @@ minecraft:entity:
   format_version: 0.1
 
   component_groups:
+    minecraft:mooshroom_become_cow:
+      minecraft:transformation:
+        into: minecraft:cow
+
     minecraft:cow_baby:
       minecraft:is_baby: {}
 
@@ -10,13 +14,13 @@ minecraft:entity:
         value: 0.5
 
       minecraft:ageable:
-        duration: 1200
+        threshold: 1200
         feedItems: wheat
         grow_up:
           event: minecraft:ageable_grow_up
           target: self
 
-      # Only babies panic. Adult cows don't!
+      # Only babies panic. Adult Mooshrooms don't!
       minecraft:behavior.panic:
         priority: 2
         speed_multiplier: 1.25
@@ -61,7 +65,7 @@ minecraft:entity:
         speed_multiplier: 1.25
         track_target: false
 
-      # Angry cows always look at you!
+      # Angry Mooshrooms always look at you!
       minecraft:behavior.look_at_player:
         priority: 4
         look_distance: 8
@@ -78,13 +82,47 @@ minecraft:entity:
         requireTame: false
         breedItems: wheat
         breedsWith:
-          mateType: minecraft:cow
-          babyType: minecraft:cow
+          mateType: minecraft:mushroomcow
+          babyType: minecraft:mushroomcow
           breed_event:
             event: minecraft:entity_born
             target: baby
 
-    # Angry cows cannot be leashed!
+      minecraft:interact:
+        - on_interact:
+            filters:
+              other_with_item: bowl
+              other_with_families: player
+              without_components: minecraft:transformation
+          use_item: true
+          transform_to_item: mushroom_stew:0
+          interact_text: action.interact.moostew
+        - on_interact:
+            filters:
+              other_with_item: shears
+              without_components: minecraft:transformation
+            event: minecraft:become_cow
+            target: self
+          use_item: false
+          hurt_item: 1
+          play_sounds: shear
+          spawn_items:
+            - red_mushroom
+            - red_mushroom
+            - red_mushroom
+            - red_mushroom
+            - red_mushroom
+          interact_text: action.interact.mooshear
+        - on_interact:
+            filters:
+              other_with_item: bucket:0
+              other_with_families: player
+          use_item: true
+          transform_to_item: bucket:1
+          play_sounds: milk
+          interact_text: action.interact.milk
+
+    # Angry Mooshrooms cannot be leashed!
     minecraft:cow_leashable:
       minecraft:leashable:
         soft_distance: 4
@@ -104,11 +142,11 @@ minecraft:entity:
 
   components:
     minecraft:identifier:
-      id: minecraft:cow
+      id: minecraft:mushroomcow
 
     minecraft:type_family:
       family:
-        - cow
+        - mushroomcow
 
     minecraft:collision_box:
       width: 0.9
@@ -116,10 +154,10 @@ minecraft:entity:
 
     minecraft:nameable: {}
 
-    # Tougher than blazes!
+    # A bit weaker than cows because of the parasites!
     minecraft:health:
-      value: 30
-      max: 30
+      value: 25
+      max: 25
 
     # The same damage as wither skeletons!
     minecraft:attack:
@@ -128,6 +166,16 @@ minecraft:entity:
     minecraft:movement:
       value: 0.25
       max: 0.5
+
+    minecraft:rideable:
+      seat_count: 1
+      family_types:
+        - zombie
+      seats:
+        position:
+          - 0
+          - 1.105
+          - 0
 
     minecraft:behavior.float:
       priority: 0
@@ -154,58 +202,25 @@ minecraft:entity:
     minecraft:behavior.random_look_around:
       priority: 10
 
-    minecraft:interact:
-      - on_interact:
-          filters:
-            other_with_item: bucket:0
-            other_with_families: player
-        use_item: true
-        transform_to_item: bucket:1
-        play_sounds: milk
-        interact_text: action.interact.milk
-
-    minecraft:rideable:
-      seat_count: 1
-      family_types:
-      - zombie
-      seats:
-        position:
-        - 0
-        - 1.105
-        - 0
-
   events:
+    minecraft:become_cow:
+      add:
+        component_groups:
+          - minecraft:mooshroom_become_cow
+
     minecraft:entity_spawned:
       randomize:
-      - weight: 95
-        add:
-          component_groups:
-            - minecraft:cow_adult
-            - minecraft:cow_neutral
-            - minecraft:cow_leashable
-      - weight: 5
-        add:
-          component_groups:
-            - minecraft:cow_baby
-            - minecraft:cow_leashable
-
-    # Mooshroom -> Cow
-    minecraft:entity_transformed:
-      sequence:
-        - add:
-            component_groups:
-              - minecraft:cow_neutral
-              - minecraft:cow_leashable
-        - filters:
-            other_with_components: minecraft:is_baby
-          add:
-            component_groups:
-              - minecraft:cow_baby
-        - filters:
-            other_without_components: minecraft:is_baby
+        - weight: 95
           add:
             component_groups:
               - minecraft:cow_adult
+              - minecraft:cow_neutral
+              - minecraft:cow_leashable
+        - weight: 5
+          add:
+            component_groups:
+              - minecraft:cow_baby
+              - minecraft:cow_leashable
 
     minecraft:entity_born:
       add:
@@ -220,7 +235,6 @@ minecraft:entity:
       add:
         component_groups:
           - minecraft:cow_adult
-          - minecraft:cow_neutral
 
     minecraft:on_leash:
       add:
