@@ -2,6 +2,7 @@ YAML_FILES = \
 	entities/bat.yaml \
 	entities/blaze.yaml \
 	entities/cavespider.yaml \
+	entities/chicken.yaml \
 	entities/creeper.yaml \
 	entities/cow.yaml \
 	entities/donkey.yaml \

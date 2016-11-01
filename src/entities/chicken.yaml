@@ -1,0 +1,241 @@
+---
+minecraft:entity:
+  format_version: 0.1
+
+  component_groups:
+    minecraft:chicken_baby:
+      minecraft:is_baby: {}
+
+      minecraft:scale:
+        value: 0.5
+
+      minecraft:ageable:
+        duration: 1200
+        feedItems:
+          - wheat_seeds
+          - beetroot_seeds
+          - melon_seeds
+          - pumpkin_seeds
+        grow_up:
+          event: minecraft:ageable_grow_up
+          target: self
+
+      # Only babies panic. Adult chickens don't!
+      minecraft:behavior.panic:
+        priority: 2
+        speed_multiplier: 1.5
+
+      minecraft:behavior.follow_parent:
+        priority: 3
+        speed_multiplier: 1.1
+
+      minecraft:behavior.look_at_player:
+        priority: 4
+        look_distance: 6
+        probability: 0.02
+
+    minecraft:chicken_neutral:
+      minecraft:on_target_acquired:
+        event: minecraft:become_angry
+
+      minecraft:behavior.look_at_player:
+        priority: 4
+        target_distance: 6
+        probability: 0.02
+
+    minecraft:chicken_angry:
+      minecraft:angry:
+        duration: 25
+        broadcastAnger: true
+        broadcastRange: 20
+        calm_event:
+          event: minecraft:on_calm
+          target: self
+
+      minecraft:behavior.nearest_attackable_target:
+        priority: 2
+        entity_types:
+        - filters:
+            other_with_families: player
+          max_dist: 16
+        must_see: true
+
+      minecraft:behavior.melee_attack:
+        priority: 3
+        speed_multiplier: 1.25
+        track_target: false
+
+      # Angry chickens always look at you!
+      minecraft:behavior.look_at_player:
+        priority: 4
+        look_distance: 8
+
+    minecraft:chicken_adult:
+      minecraft:loot:
+        table: loot_tables/entities/chicken.json
+
+      minecraft:breedable:
+        requireTame: false
+        breedsWith:
+          mateType: minecraft:chicken
+          babyType: minecraft:chicken
+          breed_event:
+            event: minecraft:entity_born
+            target: baby
+        breedItems:
+          - wheat_seeds
+          - beetroot_seeds
+          - melon_seeds
+          - pumpkin_seeds
+
+      minecraft:behavior.breed:
+        priority: 5
+        speed_multiplier: 1
+
+      minecraft:rideable:
+        seat_count: 1
+        family_types:
+          - zombie
+        seats:
+          position:
+            - 0
+            - 0.4
+            - 0
+
+    # Angry chickens cannot be leashed!
+    minecraft:chicken_leashable:
+      minecraft:leashable:
+        soft_distance: 4
+        hard_distance: 6
+        max_distance: 10
+        on_leash:
+          event: minecraft:on_leash
+          target: self
+        on_unleash:
+          event: minecraft:on_unleash
+          target: self
+
+    minecraft:chicken_leashed:
+      minecraft:behavior.move_towards_restriction:
+        priority: 6
+        speed_multiplier: 1
+
+  components:
+    minecraft:identifier:
+      id: minecraft:chicken
+
+    minecraft:type_family:
+      family:
+        - chicken
+
+    minecraft:collision_box:
+      width: 0.6
+      height: 0.8
+
+    minecraft:nameable: {}
+
+    minecraft:health:
+      value: 4
+      max: 4
+
+    minecraft:attack:
+      damage: 2
+
+    minecraft:movement:
+      value: 0.25
+
+    minecraft:fall_damage:
+      value: 0
+
+    minecraft:behavior.float:
+      priority: 0
+
+    minecraft:behavior.hurt_by_target:
+      priority: 1
+
+    minecraft:behavior.mount_pathing:
+      priority: 7
+      speed_multiplier: 1
+      target_dist: 0
+      track_target: true
+
+    minecraft:behavior.tempt:
+      priority: 8
+      speed_multiplier: 1
+      items:
+        - wheat_seeds
+        - beetroot_seeds
+        - melon_seeds
+        - pumpkin_seeds
+
+    minecraft:behavior.random_stroll:
+      priority: 9
+      speed_multiplier: 1
+
+    minecraft:behavior.random_look_around:
+      priority: 10
+
+  events:
+    # THINKME: Is this really a valid event?
+    from_egg:
+      add:
+        component_groups:
+          - minecraft:chicken_baby
+          - minecraft:chicken_leashable
+
+    minecraft:entity_spawned:
+      randomize:
+        - weight: 95
+          add:
+            component_groups:
+              - minecraft:chicken_adult
+              - minecraft:chicken_neutral
+              - minecraft:chicken_leashable
+        - weight: 5
+          add:
+            component_groups:
+              - minecraft:chicken_baby
+              - minecraft:chicken_leashable
+
+    minecraft:entity_born:
+      add:
+        component_groups:
+          - minecraft:chicken_baby
+          - minecraft:chicken_leashable
+
+    minecraft:ageable_grow_up:
+      remove:
+        component_groups:
+          - minecraft:chicken_baby
+      add:
+        component_groups:
+          - minecraft:chicken_adult
+          - minecraft:chicken_neutral
+
+    minecraft:on_leash:
+      add:
+        component_groups:
+          - minecraft:chicken_leashed
+
+    minecraft:on_unleash:
+      remove:
+        component_groups:
+          - minecraft:chicken_leashed
+
+    minecraft:become_angry:
+      remove:
+        component_groups:
+          - minecraft:chicken_neutral
+          - minecraft:chicken_leashable
+      add:
+        component_groups:
+          - minecraft:chicken_angry
+
+    minecraft:on_calm:
+      remove:
+        component_groups:
+          - minecraft:chicken_angry
+      add:
+        component_groups:
+          - minecraft:chicken_neutral
+          - minecraft:chicken_leashable
