@@ -16,6 +16,7 @@ YAML_FILES = \
 	entities/wolf.yaml \
 	entities/zombie.yaml \
 	entities/zombie_husk.yaml \
+	entities/zombie_villager.yaml \
 	pack_manifest.yaml
 
 # THINKME: For some reason guardians start to act strangely when

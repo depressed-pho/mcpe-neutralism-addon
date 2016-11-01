@@ -132,11 +132,13 @@ minecraft:entity:
         add:
           component_groups:
             - minecraft:zombie_baby
+            - minecraft:zombie_neutral
       - weight: 3
         add:
           component_groups:
             - minecraft:zombie_baby
             - minecraft:zombie_jockey
+            - minecraft:zombie_neutral
 
     minecraft:become_angry:
       remove:

@@ -123,11 +123,13 @@ minecraft:entity:
           add:
             component_groups:
               - minecraft:zombie_husk_baby
+              - minecraft:zombie_husk_neutral
         - weight: 75
           add:
             component_groups:
               - minecraft:zombie_husk_baby
               - minecraft:zombie_husk_jockey
+              - minecraft:zombie_husk_neutral
 
     minecraft:become_angry:
       remove:

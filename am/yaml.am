@@ -5,7 +5,12 @@ CLEANFILES  += $(YAML_FILES:%.yaml=%.json)
 	$(AM_V_GEN)
 	$(AM_V_at)$(MKDIR_P) $(dir $@)
 	$(AM_V_at)if $(YAML2JSON) --pretty $< > $@.tmp; then \
-		mv -f $@.tmp $@; \
+		if test -s $@.tmp; then \
+			mv -f $@.tmp $@; \
+		else \
+			rm -f $@.tmp; \
+			exit 1; \
+		fi; \
 	else \
 		exit 1; \
 	fi
