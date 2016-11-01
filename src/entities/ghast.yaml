@@ -1,0 +1,86 @@
+---
+minecraft:entity:
+  format_version: 0.1
+
+  component_groups:
+    minecraft:ghast_neutral:
+      minecraft:on_target_acquired:
+        event: minecraft:become_angry
+        target: self
+
+    minecraft:ghast_angry:
+      minecraft:angry:
+        duration: 25
+        broadcastAnger: true
+        broadcastRange: 20
+        calm_event:
+          event: minecraft:on_calm
+          target: self
+
+      minecraft:behavior.nearest_attackable_target:
+        priority: 2
+        entity_types:
+          - filters:
+              other_with_families: player
+            max_dist: 64
+        must_see: true
+
+      minecraft:behavior.ranged_attack:
+        priority: 3
+        attack_radius: 64
+        charge_shoot_trigger: 2
+        charge_charged_trigger: 1
+
+  components:
+    minecraft:identifier:
+      id: minecraft:ghast
+
+    minecraft:type_family:
+      family:
+        - ghast
+        - monster
+
+    minecraft:nameable: {}
+
+    minecraft:health:
+      value: 10
+      max: 10
+
+    minecraft:collision_box:
+      width: 4
+      height: 4
+
+    minecraft:loot:
+      table: loot_tables/entities/ghast.json
+
+    minecraft:shooter:
+      type: largefireball
+      def: minecraft:fireball.large
+
+    minecraft:fall_damage:
+      value: 0
+
+    minecraft:behavior.hurt_by_target:
+      priority: 1
+
+  events:
+    minecraft:entity_spawned:
+      add:
+        component_groups:
+          - minecraft:ghast_neutral
+
+    minecraft:become_angry:
+      remove:
+        component_groups:
+          - minecraft:ghast_neutral
+      add:
+        component_groups:
+          - minecraft:ghast_angry
+
+    minecraft:on_calm:
+      remove:
+        component_groups:
+          - minecraft:ghast_angry
+      add:
+        component_groups:
+          - minecraft:ghast_neutral

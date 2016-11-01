@@ -1,7 +1,7 @@
 # Neutralism
 An MCPE behavior pack which makes hostile mobs always spawn in
 neutral. Unless you aggravate them,
-* Blazes don't shoot fireballs at you.
+* Blazes or Ghasts don't shoot fireballs at you.
 * Creepers don't explode.
 * Silver fish, Wither Skeletons, Zombies, Husks, Zombie Villagers, or
   Endermen don't attack you.

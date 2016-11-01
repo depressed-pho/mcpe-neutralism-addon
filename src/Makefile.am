@@ -7,6 +7,7 @@ YAML_FILES = \
 	entities/cow.yaml \
 	entities/donkey.yaml \
 	entities/enderman.yaml \
+	entities/ghast.yaml \
 	entities/horse.yaml \
 	entities/mule.yaml \
 	entities/pig.yaml \
