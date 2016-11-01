@@ -268,13 +268,13 @@ minecraft:entity:
           add:
             component_groups:
               - minecraft:zombie_villager_baby
-              - minecraft:zombie_neutral
+              - minecraft:zombie_villager_neutral
         - weight: 75
           add:
             component_groups:
               - minecraft:zombie_villager_baby
               - minecraft:zombie_villager_jockey
-              - minecraft:zombie_neutral
+              - minecraft:zombie_villager_neutral
 
     minecraft:become_angry:
       remove:

@@ -1,4 +1,5 @@
 YAML_FILES = \
+	entities/bat.yaml \
 	entities/blaze.yaml \
 	entities/cavespider.yaml \
 	entities/creeper.yaml \
