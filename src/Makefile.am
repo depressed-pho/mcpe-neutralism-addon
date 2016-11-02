@@ -15,6 +15,7 @@ YAML_FILES = \
 	entities/ocelot.yaml \
 	entities/pig.yaml \
 	entities/rabbit.yaml \
+	entities/sheep.yaml \
 	entities/silverfish.yaml \
 	entities/skeleton_horse.yaml \
 	entities/spider.yaml \

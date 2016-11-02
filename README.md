@@ -12,8 +12,8 @@ neutral. Unless you aggravate them,
 In addition to that,
 * Adult cows become hostile once you attack them. You can't leash
   angry cows of course.
-* Adult pigs, rabbits, skeleton horses, bats, chickens, Mooshrooms
-  become hostile too.
+* Adult pigs, rabbits, skeleton horses, bats, chickens, Mooshrooms,
+  and sheep become hostile too.
 * The same goes for untamed donkeys, horses, and mules. Also you can't
   tame them when they are angered.
 
