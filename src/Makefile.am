@@ -25,6 +25,7 @@ YAML_FILES = \
 	entities/stray.yaml \
 	entities/witch.yaml \
 	entities/wither.yaml \
+	entities/wither_boss.yaml \
 	entities/wolf.yaml \
 	entities/zombie.yaml \
 	entities/zombie_husk.yaml \

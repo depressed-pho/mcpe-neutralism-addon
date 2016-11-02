@@ -9,6 +9,8 @@ neutral. Unless you aggravate them,
 * Witches don't throw potions at you.
 * Spiders or Cave Spiders don't attack you regardless of the light
   level.
+* The Wither don't *target* you. This doesn't mean you'll not be
+  harmed by its initial explosion and random attacks.
 
 In addition to that,
 * Adult cows become hostile once you attack them. You can't leash
