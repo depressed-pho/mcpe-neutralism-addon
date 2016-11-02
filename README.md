@@ -18,7 +18,8 @@ In addition to that,
   tame them when they are angered.
 
 There are a few exceptions:
-* Wolves still attack sheep and rabbits. They will starve otherwise...
+* Wild wolves still attack sheep and rabbits. They will starve otherwise.
+* Wild ocelots still attack chickens for the same reason.
 
 
 ## Tested on

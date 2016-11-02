@@ -12,6 +12,7 @@ YAML_FILES = \
 	entities/magmacube.yaml \
 	entities/mule.yaml \
 	entities/mushroom_cow.yaml \
+	entities/ocelot.yaml \
 	entities/pig.yaml \
 	entities/rabbit.yaml \
 	entities/silverfish.yaml \
