@@ -1,0 +1,113 @@
+---
+minecraft:entity:
+  format_version: 0.1
+
+  component_groups:
+    minecraft:skeleton_neutral:
+      minecraft:on_target_acquired:
+        event: minecraft:become_angry
+
+    minecraft:skeleton_angry:
+      minecraft:angry:
+        duration: 25
+        broadcastAnger: true
+        broadcastRange: 20
+        calm_event:
+          event: minecraft:on_calm
+          target: self
+
+      minecraft:behavior.nearest_attackable_target:
+        priority: 3
+        entity_types:
+          - filters:
+              other_with_families: player
+            max_dist: 16
+        must_see: true
+
+      minecraft:behavior.ranged_attack:
+        priority: 4
+        attack_interval_min: 1
+        attack_interval_max: 3
+        attack_radius: 15
+
+  components:
+    minecraft:identifier:
+      id: minecraft:skeleton
+
+    minecraft:collision_box:
+      width: 0.6
+      height: 1.95
+
+    minecraft:type_family:
+      family:
+        - skeleton
+        - undead
+        - monster
+
+    minecraft:burns_in_daylight: {}
+
+    minecraft:health:
+      value: 20
+      max: 20
+
+    minecraft:loot:
+      table: loot_tables/entities/skeleton.json
+
+    minecraft:movement:
+      value: 0.25
+      max: 0.25
+
+    minecraft:shooter:
+      type: Arrow
+      def: minecraft:arrow.skeleton
+
+    minecraft:nameable: {}
+
+    minecraft:equipment:
+      table: loot_tables/entities/skeleton_gear.json
+
+    minecraft:behavior.float:
+      priority: 0
+
+    minecraft:behavior.restrict_sun:
+      priority: 1
+
+    minecraft:behavior.hurt_by_target:
+      priority: 2
+
+    minecraft:behavior.flee_sun:
+      priority: 5
+      speed_multiplier: 1
+
+    minecraft:behavior.random_stroll:
+      priority: 6
+      speed_multiplier: 1
+
+    minecraft:behavior.look_at_player:
+      priority: 7
+      look_distance: 8
+
+    minecraft:behavior.random_look_around:
+      priority: 8
+
+  events:
+    minecraft:entity_spawned:
+      add:
+        component_groups:
+          - minecraft:skeleton_neutral
+
+    minecraft:become_angry:
+      remove:
+        component_groups:
+          - minecraft:skeleton_neutral
+      add:
+        component_groups:
+          - minecraft:skeleton_angry
+
+    minecraft:on_calm:
+      remove:
+        component_groups:
+          - minecraft:skeleton_angry
+      add:
+        component_groups:
+          - minecraft:skeleton_neutral

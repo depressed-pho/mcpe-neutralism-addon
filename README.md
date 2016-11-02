@@ -5,7 +5,7 @@ neutral. Unless you aggravate them,
 * Creepers don't explode.
 * Silver fish, Wither Skeletons, Zombies, Husks, Zombie Villagers,
   Endermen, or Magma Cubes don't attack you.
-* Strays don't shoot arrows at you.
+* Strays or Skeletons don't shoot arrows at you.
 * Spiders or Cave Spiders don't attack you regardless of the light
   level.
 
