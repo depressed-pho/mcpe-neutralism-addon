@@ -23,6 +23,7 @@ YAML_FILES = \
 	entities/spider.yaml \
 	entities/squid.yaml \
 	entities/stray.yaml \
+	entities/witch.yaml \
 	entities/wither.yaml \
 	entities/wolf.yaml \
 	entities/zombie.yaml \

@@ -6,6 +6,7 @@ neutral. Unless you aggravate them,
 * Silver fish, Wither Skeletons, Zombies, Husks, Zombie Villagers,
   Endermen, Magma Cubes, or Slimes don't attack you.
 * Strays or Skeletons don't shoot arrows at you.
+* Witches don't throw potions at you.
 * Spiders or Cave Spiders don't attack you regardless of the light
   level.
 
