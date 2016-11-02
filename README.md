@@ -4,7 +4,7 @@ neutral. Unless you aggravate them,
 * Blazes or Ghasts don't shoot fireballs at you.
 * Creepers don't explode.
 * Silver fish, Wither Skeletons, Zombies, Husks, Zombie Villagers,
-  Endermen, or Magma Cubes don't attack you.
+  Endermen, Magma Cubes, or Slimes don't attack you.
 * Strays or Skeletons don't shoot arrows at you.
 * Spiders or Cave Spiders don't attack you regardless of the light
   level.
@@ -29,6 +29,8 @@ There are a few exceptions:
 ## Known issues
 * **Mobs spawned before applying the behavior pack do not behave
   correctly,** which can not be fixed.
+* Split Slimes do not become hostile due to the current limitation in
+  the add-on system. The same goes for Magma Cubes.
 * Guardians or Elder Guardians cannot be made neutral. They act
   strangely when `minecraft:behavior.hurt_by_target` is applied.
 * Angry pigs are still rideable. This is weird but there seems not to
