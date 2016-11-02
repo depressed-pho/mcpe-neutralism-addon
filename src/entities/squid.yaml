@@ -1,0 +1,149 @@
+---
+minecraft:entity:
+  format_version: 0.1
+
+  component_groups:
+    minecraft:squid_baby:
+      minecraft:is_baby: {}
+
+      minecraft:scale:
+        value: 0.5
+
+      # Only babies flee. Adult squids don't!
+      minecraft:behavior.squid_flee:
+        priority: 2
+
+    minecraft:squid_neutral:
+      minecraft:on_target_acquired:
+        event: minecraft:become_angry
+
+    minecraft:squid_angry:
+      minecraft:angry:
+        duration: 25
+        broadcastAnger: true
+        broadcastRange: 20
+        calm_event:
+          event: minecraft:on_calm
+          target: self
+
+      minecraft:behavior.nearest_attackable_target:
+        priority: 2
+        entity_types:
+          - filters:
+              other_with_families: player
+            max_dist: 16
+        must_see: true
+
+      minecraft:behavior.melee_attack:
+        priority: 3
+        speed_multiplier: 1.25
+        track_target: false
+
+    # Angry squids cannot be leashed!
+    minecraft:squid_leashable:
+      minecraft:leashable:
+        soft_distance: 4
+        hard_distance: 6
+        max_distance: 10
+        on_leash:
+          event: minecraft:on_leash
+          target: self
+        on_unleash:
+          event: minecraft:on_unleash
+          target: self
+
+    minecraft:squid_leashed:
+      minecraft:behavior.move_towards_restriction:
+        priority: 4
+        speed_multiplier: 1
+
+  components:
+    minecraft:identifier:
+      id: minecraft:squid
+
+    minecraft:nameable: {}
+
+    minecraft:type_family:
+      family:
+        - squid
+
+    minecraft:collision_box:
+      width: 0.95
+      height: 0.95
+
+    minecraft:health:
+      value: 10
+      max: 10
+
+    minecraft:attack:
+      damage: 2
+
+    minecraft:loot:
+      table: loot_tables/entities/squid.json
+
+    minecraft:breathable:
+      totalSupply: 15
+      suffocateTime: 0
+      breathesAir: false
+      breathesWater: true
+
+    minecraft:movement:
+      value: 0.2
+      max: 0.5
+
+    minecraft:behavior.squid_move_away_from_ground:
+      priority: 0
+
+    minecraft:behavior.hurt_by_target:
+      priority: 1
+
+    minecraft:behavior.squid_idle:
+      priority: 4
+
+    minecraft:behavior.squid_dive:
+      priority: 5
+
+    minecraft:behavior.squid_out_of_water:
+      priority: 6
+
+  events:
+    minecraft:entity_spawned:
+      randomize:
+      - weight: 95
+        add:
+          component_groups:
+            - minecraft:squid_neutral
+            - minecraft:squid_leashable
+      - weight: 5
+        add:
+          component_groups:
+            - minecraft:squid_baby
+            - minecraft:squid_leashable
+
+    minecraft:on_leash:
+      add:
+        component_groups:
+          - minecraft:squid_leashed
+
+    minecraft:on_unleash:
+      remove:
+        component_groups:
+          - minecraft:squid_leashed
+
+    minecraft:become_angry:
+      remove:
+        component_groups:
+          - minecraft:squid_neutral
+          - minecraft:squid_leashable
+      add:
+        component_groups:
+          - minecraft:squid_angry
+
+    minecraft:on_calm:
+      remove:
+        component_groups:
+          - minecraft:squid_angry
+      add:
+        component_groups:
+          - minecraft:squid_neutral
+          - minecraft:squid_leashable

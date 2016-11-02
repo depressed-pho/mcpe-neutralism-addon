@@ -55,9 +55,9 @@ minecraft:entity:
       minecraft:behavior.nearest_attackable_target:
         priority: 2
         entity_types:
-        - filters:
-            other_with_families: player
-          max_dist: 16
+          - filters:
+              other_with_families: player
+            max_dist: 16
         must_see: true
 
       minecraft:behavior.melee_attack:

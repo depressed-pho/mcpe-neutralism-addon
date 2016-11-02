@@ -13,7 +13,7 @@ In addition to that,
 * Adult cows become hostile once you attack them. You can't leash
   angry cows of course.
 * Adult pigs, rabbits, skeleton horses, bats, chickens, Mooshrooms,
-  and sheep become hostile too.
+  sheep, and squids become hostile too.
 * The same goes for untamed donkeys, horses, and mules. Also you can't
   tame them when they are angered.
 
@@ -31,6 +31,7 @@ There are a few exceptions:
   correctly,** which can not be fixed.
 * Split Slimes do not become hostile due to the current limitation in
   the add-on system. The same goes for Magma Cubes.
+* Squids have some difficulties on dealing damage to you.
 * Guardians or Elder Guardians cannot be made neutral. They act
   strangely when `minecraft:behavior.hurt_by_target` is applied.
 * Angry pigs are still rideable. This is weird but there seems not to
