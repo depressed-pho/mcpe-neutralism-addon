@@ -15,7 +15,7 @@ neutral. Unless you aggravate them,
 * Spiders or Cave Spiders don't attack you regardless of the light
   level.
 * The Wither don't *target* you. This doesn't mean you'll not be
-  harmed by its initial explosion and random attacks.
+  harmed by its initial explosion or random attacks.
 
 In addition to that,
 * Adult cows become hostile once you attack them. You can't leash
