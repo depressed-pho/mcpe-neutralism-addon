@@ -1,5 +1,10 @@
 # Neutralism
-An MCPE behavior pack which makes hostile mobs always spawn in
+
+**Do not underestimate them. They are only neutral. Not friendly at all.**
+
+![](./img/screenshot.jpg)
+
+This is an MCPE behavior pack which makes hostile mobs always spawn in
 neutral. Unless you aggravate them,
 * Blazes or Ghasts don't shoot fireballs at you.
 * Creepers don't explode.
