@@ -1,4 +1,4 @@
-SUBDIRS = src
+SUBDIRS = img src
 
 EXTRA_DIST = \
 	README.md

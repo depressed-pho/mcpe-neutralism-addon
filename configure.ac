@@ -34,6 +34,7 @@ AS_IF([test "x$ZIP" = x],
 
 AC_CONFIG_FILES([
     Makefile
+    img/Makefile
     src/Makefile
     src/pack_manifest.yaml
 ])
